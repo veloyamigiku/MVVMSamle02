@@ -3,6 +3,7 @@ package jp.co.myself.mvvmsample02;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,10 +13,13 @@ import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
-    private static final int VIEW_ID_TOOLBAR = 1;
-    private static final int VIEW_ID_RECYCLERVIEW = 2;
+    private static final int VIEW_ID_TOOLBAR = View.generateViewId();
+    private static final int VIEW_ID_RECYCLERVIEW = View.generateViewId();
 
 
     @Override
@@ -52,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
         tb.setNavigationIcon(getResources().getDrawable(R.drawable.ic_action_name));
         cl.addView(tb);
         ConstraintSet tbCs = new ConstraintSet();
-        tbCs.clone(cl);
         tbCs.constrainWidth(
                 tb.getId(),
                 ConstraintSet.MATCH_CONSTRAINT);
@@ -88,7 +91,6 @@ public class MainActivity extends AppCompatActivity {
         rv.setLayoutManager(new LinearLayoutManager(this));
         cl.addView(rv);
         ConstraintSet rvCs = new ConstraintSet();
-        rvCs.clone(cl);
         rvCs.constrainWidth(
                 rv.getId(),
                 ConstraintSet.MATCH_CONSTRAINT);
@@ -99,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
                 rv.getId(),
                 ConstraintSet.TOP,
                 tb.getId(),
-                ConstraintSet.TOP,
+                ConstraintSet.BOTTOM,
                 0);
         rvCs.connect(
                 rv.getId(),
@@ -121,5 +123,25 @@ public class MainActivity extends AppCompatActivity {
                 0);
         rvCs.applyTo(cl);
 
+        CasarealRecyclerViewAdapter adapter = new CasarealRecyclerViewAdapter(createDataset());
+
+        LinearLayoutManager llm = new LinearLayoutManager(this);
+
+        rv.setLayoutManager(llm);
+
+        rv.setAdapter(adapter);
+
     }
+
+    private List<RowData> createDataset() {
+
+        List<RowData> dataset = new ArrayList<>();
+        for (int i = 0; i < 50; i++) {
+            RowData data = new RowData("カサレアル　太郎" + i + "号");
+            dataset.add(data);
+        }
+        return dataset;
+
+    }
+
 }
