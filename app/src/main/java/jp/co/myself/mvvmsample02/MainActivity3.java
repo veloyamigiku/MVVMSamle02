@@ -74,8 +74,8 @@ public class MainActivity3 extends AppCompatActivity {
                 LinearLayout.LayoutParams.WRAP_CONTENT));
         cv.setListener(new CustomView2.CustomeView2Listener() {
             @Override
-            public void click(String buttonTitle, int buttonRowIdx, int buttonColIdx) {
-                Snackbar.make(cv, buttonTitle + ":" + buttonRowIdx + ":" + buttonColIdx, Snackbar.LENGTH_LONG).show();
+            public void click(String title, int rowIdx, int colIdx) {
+                Snackbar.make(cv, title + ":" + rowIdx + ":" + colIdx, Snackbar.LENGTH_LONG).show();
             }
         });
         verticalLl.addView(cv);
@@ -86,8 +86,8 @@ public class MainActivity3 extends AppCompatActivity {
                 LinearLayout.LayoutParams.WRAP_CONTENT));
         cv2.setListener(new CustomView2.CustomeView2Listener() {
             @Override
-            public void click(String buttonTitle, int buttonRowIdx, int buttonColIdx) {
-                Snackbar.make(cv2, buttonTitle + ":" + buttonRowIdx + ":" + buttonColIdx, Snackbar.LENGTH_LONG).show();
+            public void click(String title, int rowIdx, int colIdx) {
+                Snackbar.make(cv2, title + ":" + rowIdx + ":" + colIdx, Snackbar.LENGTH_LONG).show();
             }
         });
         verticalLl.addView(cv2);
@@ -98,8 +98,8 @@ public class MainActivity3 extends AppCompatActivity {
                 LinearLayout.LayoutParams.WRAP_CONTENT));
         cv3.setListener(new CustomView2.CustomeView2Listener() {
             @Override
-            public void click(String buttonTitle, int buttonRowIdx, int buttonColIdx) {
-                Snackbar.make(cv3, buttonTitle + ":" + buttonRowIdx + ":" + buttonColIdx, Snackbar.LENGTH_LONG).show();
+            public void click(String title, int rowIdx, int colIdx) {
+                Snackbar.make(cv3, title + ":" + rowIdx + ":" + colIdx, Snackbar.LENGTH_LONG).show();
             }
         });
         verticalLl.addView(cv3);

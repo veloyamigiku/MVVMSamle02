@@ -2,15 +2,16 @@ package jp.co.myself.mvvmsample02;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class CustomView2 extends LinearLayout {
     
     public interface CustomeView2Listener {
-        void click(String buttonTitle, int buttonRowIdx, int buttonColIdx);
+        void click(String title, int rowIdx, int colIdx);
     }
     
     private CustomeView2Listener listener = null;
@@ -38,42 +39,35 @@ public class CustomView2 extends LinearLayout {
             horizontalLl.setLayoutParams(mp2);
             addView(horizontalLl);
             for (Integer j = 0; j < col; j++) {
-                // TODO TextViewに切り替える。
-                Button button = new Button(context);
-                button.setAllCaps(false);
-                button.setText(labelPrefix + i + "_" + j);
-                button.setLayoutParams(new LinearLayout.LayoutParams(
+                TextView tv = new TextView(context);
+                // タップ時のエフェクトを設定する。
+                tv.setClickable(true);
+                TypedValue selectableItemBackgroundTypedValue = new TypedValue();
+                context.getTheme().resolveAttribute(android.R.attr.selectableItemBackground, selectableItemBackgroundTypedValue, true);
+                tv.setBackgroundResource(selectableItemBackgroundTypedValue.resourceId);
+                tv.setText(labelPrefix + i + "_" + j);
+                tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 24);
+                tv.setPadding(20, 20, 20, 20);
+                tv.setLayoutParams(new LinearLayout.LayoutParams(
                         0,
                         ViewGroup.LayoutParams.WRAP_CONTENT,
                         1));
-                MarginLayoutParams mlp = (MarginLayoutParams)button.getLayoutParams();
-                mlp.setMargins(10, 10, 10, 10);
-                button.setLayoutParams(mlp);
-                button.setTextColor(Color.BLACK);
-                //button.setBackgroundColor(Color.YELLOW);
+                //MarginLayoutParams tvForMlp = (MarginLayoutParams)tv.getLayoutParams();
+                //tvForMlp.setMargins(20, 20, 20, 20);
+                //tv.setLayoutParams(tvForMlp);
+                //tv.setBackgroundColor(Color.GRAY);
                 Integer finalI = i;
                 Integer finalJ = j;
-                button.setOnClickListener(new OnClickListener() {
+                tv.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         if (listener != null) {
-                            listener.click(button.getText().toString(), finalI, finalJ);
+                            listener.click(tv.getText().toString(), finalI, finalJ);
                         }
                     }
                 });
-                horizontalLl.addView(button);
-                /*TextView tv = new TextView(context);
-                tv.setText(labelPrefix + i + "_" + j);
-                tv.setLayoutParams(new LinearLayout.LayoutParams(
-                        500,
-                        ViewGroup.LayoutParams.WRAP_CONTENT));
-                MarginLayoutParams mlp2 = (MarginLayoutParams)tv.getLayoutParams();
-                mlp.setMargins(10, 0, 10, 0);
-                tv.setLayoutParams(mlp2);
-                tv.setBackgroundColor(Color.GRAY);
-                horizontalLl.addView(tv);*/
+                horizontalLl.addView(tv);
             }
-            //LayoutParams lp = (LayoutParams) horizontalLl.getLayoutParams();
         }
 
     }
