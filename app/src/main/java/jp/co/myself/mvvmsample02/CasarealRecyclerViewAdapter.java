@@ -1,6 +1,5 @@
 package jp.co.myself.mvvmsample02;
 
-import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.TextView;
 

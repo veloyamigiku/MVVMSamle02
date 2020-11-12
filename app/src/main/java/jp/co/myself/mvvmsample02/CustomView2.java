@@ -2,13 +2,10 @@ package jp.co.myself.mvvmsample02;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 public class CustomView2 extends LinearLayout {
     
@@ -43,6 +40,7 @@ public class CustomView2 extends LinearLayout {
             for (Integer j = 0; j < col; j++) {
                 // TODO TextViewに切り替える。
                 Button button = new Button(context);
+                button.setAllCaps(false);
                 button.setText(labelPrefix + i + "_" + j);
                 button.setLayoutParams(new LinearLayout.LayoutParams(
                         0,
@@ -76,7 +74,6 @@ public class CustomView2 extends LinearLayout {
                 horizontalLl.addView(tv);*/
             }
             //LayoutParams lp = (LayoutParams) horizontalLl.getLayoutParams();
-            Log.d("hogehoge", "hogehoge");
         }
 
     }
